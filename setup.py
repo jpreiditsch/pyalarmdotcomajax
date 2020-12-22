@@ -21,7 +21,7 @@ long_description = read("README.md")
 setup(
     name="pyalarmdotcomajax",
     version=pyalarmdotcomajax.__version__,
-    url="http://github.com/jpreiditsch/pyalarmdotcomajax/",
+    url="http://github.com/uvjustinpyalarmdotcomajax/",
     license=" ",
     author="Justin Wong",
     install_requires=[],
