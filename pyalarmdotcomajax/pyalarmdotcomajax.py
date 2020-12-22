@@ -153,6 +153,7 @@ class Alarmdotcom:
         except KeyError:
             _LOGGER.error("Unable to extract ajax key from Alarm.com")
             raise
+        return True
 
     async def _async_get_system_info(self):
         try:
@@ -194,13 +195,17 @@ class Alarmdotcom:
         except (KeyError, IndexError):
             _LOGGER.error("Unable to extract partition id from Alarm.com")
             raise
+        return True
 
     async def async_login(self):
         """Login to Alarm.com."""
         _LOGGER.debug("Attempting to log in to Alarm.com")
-        await self._async_get_ajax_key()
-        await self._async_get_system_info()
-        return True
+        login_key_success = await self._async_get_ajax_key()
+        if login_key_success:
+            system_info_success await self._async_get_system_info()
+            if system_info_success:
+                return True
+        return False
 
     async def async_update(self):
         """Fetch the latest state."""
