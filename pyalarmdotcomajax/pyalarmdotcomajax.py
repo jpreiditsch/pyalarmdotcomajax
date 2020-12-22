@@ -98,7 +98,7 @@ class Alarmdotcom:
             {"twoFactorAuthenticationId": twofactorcookie} if twofactorcookie else {}
         )
 
-    async def _async_get_ajax_key(self):
+    async def async_login(self):
         try:
             # load login page once and grab VIEWSTATE/cookies
             async with self._websession.get(
@@ -155,7 +155,6 @@ class Alarmdotcom:
             raise
         return True
  
-    async def _async_get_system_info(self):
         try:
             # grab system id
             async with self._websession.get(
@@ -197,15 +196,6 @@ class Alarmdotcom:
             raise
         return True
 
-    async def async_login(self):
-        """Login to Alarm.com."""
-        _LOGGER.debug("Attempting to log in to Alarm.com")
-        login_key_success = await self._async_get_ajax_key()
-        if login_key_success:
-            system_info_success await self._async_get_system_info()
-            if system_info_success:
-                return True
-        return False
 
     async def async_update(self):
         """Fetch the latest state."""
