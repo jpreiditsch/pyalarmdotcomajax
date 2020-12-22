@@ -154,7 +154,7 @@ class Alarmdotcom:
             _LOGGER.error("Unable to extract ajax key from Alarm.com")
             raise
         return True
-
+ 
     async def _async_get_system_info(self):
         try:
             # grab system id
